@@ -1,0 +1,46 @@
+.dashboard-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: auto;
+    background-color: black; /* Optional: Adds a semi-transparent dark background */
+    border-radius: 10px;
+    padding: 30px;
+  }
+  
+  h1 {
+    color: white; /* White text */
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .quote {
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #f1f1f1; /* Slightly lighter white */
+    margin: 20px 0;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: white; /* White text */
+  }
+  
+  .btn-primary {
+    background-color: #28a745;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    color: white; /* White text */
+  }
+  
+  .btn-primary:hover {
+    background-color: #218838;
+  }
+  
