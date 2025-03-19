@@ -8,7 +8,8 @@ import ProtectedRoute from './protectroute';
 import DashBoard from './DashBoard';
 import SignupComponent from './Signup';
 import WorkoutList from './WorkOutLog';
-import FormRegister from './Register';
+import CalorieIntake from './CalorieTrack';
+import TrendsPage from './WorkoutTrends';
 function App() {
   const navigate=useNavigate();
   const [isUserAuthenticated,setAuth]=useState(false);
@@ -40,7 +41,12 @@ function App() {
             <li>
             <Link to="/workout" className='nav-link'>WorkOuts</Link>
             </li>
-          
+            <li>
+            <Link to="/Calorie" className='nav-link'>CalorieIntake</Link>
+            </li>
+            <li>
+            <Link to="/Trends" className='nav-link'>Analysis</Link>
+            </li>
         </>)}
       </ul>
       {isUserAuthenticated && (
@@ -55,6 +61,8 @@ function App() {
             <Route element={<ProtectedRoute isUserAuthenticated={isUserAuthenticated}/>}>
             <Route  path='/DashBoard' Component={DashBoard} ></Route>
             <Route  path='/workout' Component={WorkoutList} ></Route>
+            <Route  path='/Calorie' Component={CalorieIntake} ></Route>
+            <Route  path='/Trends' Component={TrendsPage} ></Route>
             </Route>
             <Route path='/' element={<LoginComponent login={UserLogin}/>} ></Route>
             <Route path='/*' element={<SignupComponent/>} ></Route>

@@ -1,0 +1,56 @@
+.trends-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .tables-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .table-wrapper {
+    width: 45%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background: #4CAF50;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .tables-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .table-wrapper {
+      width: 100%;
+    }
+  }
+  

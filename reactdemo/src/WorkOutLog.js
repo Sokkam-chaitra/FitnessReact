@@ -3,45 +3,69 @@ import { useNavigate } from "react-router-dom";
 import './Workout.css';
 
 export default function WorkoutList() {
-  const [workouts, setWorkouts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token"); // Retrieve token from local storage
+  // Predefined Workouts
+  const predefinedWorkouts = [
+    {
+      workoutName: "Treadmill",
+      description: "Boost your endurance and burn calories with a high-energy treadmill session! Whether it's a brisk walk or an intense run, this workout improves heart health, strengthens muscles, and helps with weight loss.",
+      maxCalories: 400,
+      duration: 30,
+    },
+    {
+      workoutName: "Walking",
+      description: "Take a step towards better health with a refreshing walk! Walking enhances cardiovascular health, strengthens joints, and boosts mood. Stay consistent and enjoy the benefits of this simple yet powerful exercise!",
+      maxCalories: 200,
+      duration: 45,
+    },
+    {
+      workoutName: "Push-Ups",
+      description: "Build strength and endurance with push-ups! This bodyweight exercise targets your chest, shoulders, and core while improving overall fitness. Push yourself to new heights!",
+      maxCalories: 250,
+      duration: 20,
+    }
+  ];
+  const handleStartWorkout = (workout) => {
+    const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5041/api/WorkOut/GetWorkouts", {
-      method: "GET",
+    const requestData = {
+      WorkoutName: workout.workoutName,  // ✅ Match backend model
+      Description: workout.description,
+      Maxcalories: workout.maxCalories,
+      Duration: workout.duration,
+    };
+    
+
+    fetch("http://localhost:5041/api/WorkOut/LogWorkout", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` // Attach token in request header
-      }
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify(requestData)
     })
-      .then(response => response.json())
-      .then(data => {
-        if (data.$values) {
-          setWorkouts(data.$values); // Extract the correct array
-        } else {
-          setWorkouts([]); // Set empty if no workouts found
-        }
-      }).catch(error => console.error("Error fetching workouts:", error));
-  }, []);
+    .then(response => response.json())
+    .then(data => {
+      console.log("Workout logged:", data);
+      alert("Workout logged successfully!");
+    })
+    .catch(error => console.error("Error logging workout:", error));
+  };
 
   return (
     <div className="workout-container">
       <h2 className="title">Available Workouts</h2>
       <div className="workout-list">
-        {workouts.length > 0 ? (
-          workouts.map((workout) => (
-            <div key={workout.workoutID} className="workout-card">
-              <h3>{workout.workoutName}</h3>
-              <p>{workout.description}</p>
-              <p>Recommended Time: {workout.recommendedDuration} min</p>
-              <p>Max calories can Burn: {workout.maxCaloriesBurn}</p>
-            </div>
-          ))
-        ) : (
-          <p>No workouts available.</p>
-        )}
+        {predefinedWorkouts.map((workout, index) => (
+          <div key={index} className="workout-card">
+            <h3>{workout.workoutName}</h3>
+            <p>{workout.description}</p>
+            <p>Duration: {workout.duration} min</p>
+            <p>Max Calories Burn: {workout.maxCalories}</p>
+            <button onClick={() => handleStartWorkout(workout)}>Start Workout</button>
+          </div>
+        ))}
       </div>
     </div>
   );

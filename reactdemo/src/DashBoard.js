@@ -21,8 +21,8 @@ function Dashboard() {
         Let’s make every second count!
       </p>
 
-      <button className="btn btn-primary" onClick={() => navigate("/reg")}>
-        Register
+      <button className="btn btn-primary" onClick={() => navigate("/workout")}>
+        WorkOuts
       </button>
     </div>
   );
